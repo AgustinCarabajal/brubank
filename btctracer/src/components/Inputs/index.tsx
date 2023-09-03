@@ -146,6 +146,7 @@ export const FileInput = ({
             onChange={handleChange}
             hidden
             name={inputName}
+            required
           />
           <Button
             type="button"

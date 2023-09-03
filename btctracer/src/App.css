@@ -165,6 +165,7 @@
   text-align: center;
   align-items: center;
   margin: 20px 0;
+  min-width: 330px;
 }
 
 .imageContainer img {
