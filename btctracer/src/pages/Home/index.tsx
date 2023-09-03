@@ -3,6 +3,7 @@ import { getPrices } from "../../api";
 import BTCIcon from "../../assets/btc.svg";
 import ETHIcon from "../../assets/eth.svg";
 import { Button } from "../../components";
+import { useNavigate } from "react-router";
 
 export const Logo = () => (
   <div className="logo">
@@ -33,6 +34,8 @@ export const CoinCard = ({ icon, value, name }: CoinCardProps) => {
 };
 
 export const Home = () => {
+  const navigate = useNavigate();
+
   const { data, isLoading } = useQuery({
     queryKey: ["getPrices"],
     queryFn: getPrices,
@@ -55,7 +58,10 @@ export const Home = () => {
             return <></>;
         }
       })}
-      <Button label="Hacerme una cuenta" onClick={() => {}} />
+      <Button
+        label="Hacerme una cuenta"
+        onClick={() => navigate("/signup", { replace: true })}
+      />
     </div>
   );
 };

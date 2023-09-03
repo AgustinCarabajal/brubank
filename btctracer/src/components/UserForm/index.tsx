@@ -1,4 +1,4 @@
-import { DocumentInput, FormTitle, Input } from "..";
+import { DocumentInput, DateInput, FormTitle, Input } from "..";
 import UserIcon from "../../assets/user.svg";
 
 export const UserForm = () => {
@@ -6,10 +6,15 @@ export const UserForm = () => {
     <div>
       <FormTitle title="Crear cuenta" icon={UserIcon} />
       <DocumentInput />
-      <Input placeholder="ejemplo@ejemplo.com" label="Correo electrónico" />
-      <Input placeholder="Ingresá tu nombre" label="Nombre" />
-      <Input placeholder="Ingresá tu apellido" label="Apellido" />
-      <Input placeholder="24/04/1945" label="Fecha de nacimiento" />
+      <Input
+        type="email"
+        required
+        placeholder="ejemplo@ejemplo.com"
+        label="Correo electrónico"
+      />
+      <Input placeholder="Ingresá tu nombre" required label="Nombre" />
+      <Input placeholder="Ingresá tu apellido" required label="Apellido" />
+      <DateInput />
     </div>
   );
 };

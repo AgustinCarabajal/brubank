@@ -4,7 +4,7 @@ import { useRegisterForm } from "../../hooks/useRegisterForm";
 
 export const Signup = () => {
   const { step, next } = useRegisterForm([
-    <UserForm />,
+    // <UserForm />,
     <DocumentForm />,
     <PasswordForm />,
   ]);

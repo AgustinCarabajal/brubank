@@ -32,6 +32,17 @@ h1 {
   line-height: normal;
 }
 
+h3 {
+  color: #262626;
+  text-align: center;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: -10px;
+  opacity: 0.4;
+}
+
 ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
   color: #bfbfbf;
