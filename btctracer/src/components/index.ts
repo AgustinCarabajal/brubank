@@ -4,3 +4,4 @@ export * from "./DocumentForm";
 export * from "./PasswordForm";
 export * from "./Inputs";
 export * from "./FormTitle";
+export * from "./ErrorAlert";

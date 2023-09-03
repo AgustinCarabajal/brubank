@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "..";
 import ArrowIcon from "../../assets/up-arrow.svg";
+import { BsEyeSlashFill, BsEyeFill, BsFillTrashFill } from "react-icons/bs";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -101,6 +102,8 @@ export const FileInput = ({
   const [fileName, setFileName] = useState("No hay archivos agregados");
   const [imgLoading, setImgLoading] = useState(false);
 
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
   const handleClick = () => {
     const element = document.querySelector(
       `input[name='${inputName}']`
@@ -117,6 +120,12 @@ export const FileInput = ({
     }
   };
 
+  const handleDelete = () => {
+    setImage(null);
+    setFileName("No hay archivos agregados");
+    setConfirmDelete(false);
+  };
+
   return (
     <div>
       {image ? (
@@ -126,13 +135,49 @@ export const FileInput = ({
               <span>Subiendo...</span>
             </div>
           ) : (
-            <img
-              loading="lazy"
-              src={image}
-              onLoadStart={() => setImgLoading(true)}
-              onLoad={() => setImgLoading(false)}
-              alt={fileName}
-            />
+            <>
+              <img
+                loading="lazy"
+                style={
+                  confirmDelete
+                    ? {
+                        filter: "brightness(40%)",
+                      }
+                    : {}
+                }
+                src={image}
+                onLoadStart={() => setImgLoading(true)}
+                onLoad={() => setImgLoading(false)}
+                alt={fileName}
+              />
+
+              {confirmDelete ? (
+                <div className="deleteWrapper">
+                  <span>¿Seguro que querés borrar?</span>
+                  <div>
+                    <Button
+                      onClick={() => setConfirmDelete(false)}
+                      link
+                      style={{ color: "#fff" }}
+                      label="Cancelar"
+                    />
+                    <Button
+                      onClick={handleDelete}
+                      link
+                      style={{ color: "#FF3636" }}
+                      label="Borrar"
+                    />
+                  </div>
+                </div>
+              ) : (
+                <div
+                  className="deleteIcon"
+                  onClick={() => setConfirmDelete(true)}
+                >
+                  {<BsFillTrashFill />}
+                </div>
+              )}
+            </>
           )}
         </div>
       ) : (
@@ -156,6 +201,19 @@ export const FileInput = ({
           />
         </div>
       )}
+    </div>
+  );
+};
+
+export const PasswordInput = (props: InputProps) => {
+  const [showPass, setShowPass] = useState(false);
+
+  return (
+    <div className="passWrapper">
+      <Input {...props} type={showPass ? "text" : "password"} />
+      <div className="passIcon" onClick={() => setShowPass((prev) => !prev)}>
+        {showPass ? <BsEyeFill /> : <BsEyeSlashFill />}
+      </div>
     </div>
   );
 };

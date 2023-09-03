@@ -1,7 +1,5 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
@@ -100,13 +98,13 @@
   display: flex;
   flex-direction: row;
   text-align: left;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-flow: row wrap;
   align-items: stretch;
-  margin: 0 -10px;
 }
 
 .documentValueInput {
+  width: 231px;
   height: 42px;
   flex-shrink: 0;
   flex-grow: 3;
@@ -131,10 +129,18 @@
 }
 
 .formTitle {
-  width: 100%;
+  min-width: 330px;
   height: 173px;
   border-radius: 14px;
   background: #f1f1f1;
+  margin-bottom: 10px;
+}
+.successTitle {
+  min-width: 330px;
+  height: 173px;
+  border-radius: 14px;
+  background: #2dca73;
+  color: #fff;
   margin-bottom: 10px;
 }
 
@@ -194,4 +200,74 @@
   font-weight: 700;
   line-height: normal;
   text-align: left;
+}
+
+.passWrapper {
+  position: relative;
+}
+
+.passwordFormWrapper {
+  min-width: 330px;
+}
+
+.passIcon {
+  position: absolute;
+  right: 12px;
+  top: 35px;
+  width: 24px;
+  height: 24px;
+}
+
+.deleteIcon {
+  position: absolute;
+  color: #fff;
+  background-color: #e83b49;
+  border-radius: 4px;
+  margin-left: 300px;
+  margin-top: 130px;
+  width: 40px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link {
+  text-align: center;
+  font-family: Inter;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background-color: transparent;
+  border: none;
+}
+
+.deleteWrapper {
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  position: absolute;
+}
+
+.alert {
+  min-width: 100%;
+  height: 52px;
+  border-radius: 7px;
+  background: #ff1400;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 0 20px;
+}
+
+.warningIcon {
+  font-size: 25px;
+  padding: 0 15px 0 0;
 }

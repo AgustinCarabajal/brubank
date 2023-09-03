@@ -11,5 +11,6 @@ export const useRegisterForm = (steps: ReactElement[]) => {
     currentIndex,
     step: steps[currentIndex],
     next,
+    isLastStep: currentIndex >= steps.length - 1,
   };
 };
