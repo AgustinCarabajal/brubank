@@ -41,19 +41,3 @@ export const INITIAL_DATA = {
   password: "",
   confirm: "",
 };
-
-const MAX_POSSIBLE_MONTH = 12;
-const MIN_POSSIBLE_YEAR = 1900;
-
-export const isValidDate = (date: string) => {
-  const month = date.split("/")[1];
-  const year = date.split("/")[2];
-
-  console.log(parseInt(month, 10), parseInt(year, 10));
-
-  return (
-    parseInt(month, 10) <= MAX_POSSIBLE_MONTH &&
-    parseInt(year, 10) >= MIN_POSSIBLE_YEAR &&
-    parseInt(year, 10) <= new Date().getFullYear()
-  );
-};

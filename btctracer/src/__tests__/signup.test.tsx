@@ -60,7 +60,7 @@ describe("BitcoinTracer test suite", () => {
       target: { value: "lastname" },
     });
     fireEvent.change(screen.getByTestId("date-input"), {
-      target: { value: "12/12/2000" },
+      target: { value: new Date("12/12/2000").toISOString().split("T")[0] },
     });
 
     fireEvent.click(screen.getByText(/Siguiente/i));
@@ -118,7 +118,7 @@ describe("BitcoinTracer test suite", () => {
       target: { value: "lastname" },
     });
     fireEvent.change(screen.getByTestId("date-input"), {
-      target: { value: "12/12/2000" },
+      target: { value: new Date("12/12/2000").toISOString().split("T")[0] },
     });
 
     fireEvent.click(screen.getByText(/Siguiente/i));

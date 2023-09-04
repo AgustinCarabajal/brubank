@@ -12,7 +12,7 @@ import {
 import { useRegisterForm } from "../../hooks/useRegisterForm";
 import { signup } from "../../api";
 import { FormData } from "../../types";
-import { INITIAL_DATA, isValidDate, validatePassword } from "../../utils";
+import { INITIAL_DATA, validatePassword } from "../../utils";
 import { BarLoader } from "react-spinners";
 
 export const Signup = () => {
@@ -47,14 +47,28 @@ export const Signup = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     return !isLastStep ? next() : submitForm();
+  };
+
+  const handleValidation = (e: React.FormEvent<HTMLFormElement>) => {
+    switch ((e.target as HTMLInputElement).type) {
+      case "date": {
+        e.preventDefault();
+        setError("Ingrese una fecha válida");
+        return;
+      }
+
+      default:
+        return;
+    }
   };
 
   return (
     <>
       <>{error && <ErrorAlert message={error} />}</>
       <FormWrapper>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} onInvalid={handleValidation}>
           {step}
           {isLoading ? (
             <div className="submitLoader">
