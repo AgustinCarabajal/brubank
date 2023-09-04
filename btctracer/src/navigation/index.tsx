@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import { Home, Signup, Success } from "../pages";
 
 export const router = createBrowserRouter([
@@ -13,5 +13,9 @@ export const router = createBrowserRouter([
   {
     path: "/success",
     element: <Success />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/" />,
   },
 ]);

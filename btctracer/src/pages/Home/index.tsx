@@ -4,6 +4,7 @@ import BTCIcon from "../../assets/btc.svg";
 import ETHIcon from "../../assets/eth.svg";
 import { Button } from "../../components";
 import { useNavigate } from "react-router";
+import { BarLoader } from "react-spinners";
 
 export const Logo = () => (
   <div className="logo">
@@ -42,17 +43,31 @@ export const Home = () => {
   });
 
   return isLoading ? (
-    <>Loading...</>
+    <BarLoader color="#614ad9" />
   ) : (
     <div className="container">
       <Logo />
       {data.map((coin: CoinType) => {
         switch (Object.keys(coin)[0]) {
           case "ETH": {
-            return <CoinCard name="ETH" icon={ETHIcon} value={coin["ETH"]} />;
+            return (
+              <CoinCard
+                key="ETH"
+                name="ETH"
+                icon={ETHIcon}
+                value={coin["ETH"]}
+              />
+            );
           }
           case "BTC": {
-            return <CoinCard name="BTC" icon={BTCIcon} value={coin["BTC"]} />;
+            return (
+              <CoinCard
+                key="BTC"
+                name="BTC"
+                icon={BTCIcon}
+                value={coin["BTC"]}
+              />
+            );
           }
           default:
             return <></>;

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "..";
 import ArrowIcon from "../../assets/up-arrow.svg";
 import { BsEyeSlashFill, BsEyeFill, BsFillTrashFill } from "react-icons/bs";
+import { documentType } from "../../pages";
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -21,8 +22,21 @@ export const Input = (props: InputProps) => {
   );
 };
 
-export const DocumentInput = () => {
-  const [val, setVal] = useState("");
+type DocumentType = {
+  dniType: documentType;
+  dni: string;
+};
+
+type DocumentInputProps = DocumentType & {
+  updateForm: (fields: Partial<DocumentType>) => void;
+};
+
+export const DocumentInput = ({
+  dni,
+  dniType,
+  updateForm,
+}: DocumentInputProps) => {
+  const [val, setVal] = useState(dni);
 
   const normalizedValue = (value: string): string => {
     if (!value) return value;
@@ -37,12 +51,21 @@ export const DocumentInput = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setVal(normalizedValue(e.target.value));
+    updateForm({ dni: normalizedValue(e.target.value) });
   };
 
   return (
     <div className="documentContainer">
-      <Input className="documentTypeInput" value="DNI" disabled label="Tipo" />
       <Input
+        type="text"
+        className="documentTypeInput"
+        value={dniType.toUpperCase()}
+        disabled
+        label="Tipo"
+      />
+      <Input
+        type="text"
+        autoFocus
         className="documentValueInput"
         placeholder="00.000.000"
         label="Documento"
@@ -55,8 +78,15 @@ export const DocumentInput = () => {
   );
 };
 
-export const DateInput = () => {
-  const [val, setVal] = useState("");
+type DateType = {
+  date: string;
+};
+type DateInputProps = DateType & {
+  updateForm: (fields: Partial<DateType>) => void;
+};
+
+export const DateInput = ({ date, updateForm }: DateInputProps) => {
+  const [val, setVal] = useState(date);
 
   const normalizedValue = (value: string): string => {
     if (!value) return value;
@@ -70,19 +100,36 @@ export const DateInput = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setVal(normalizedValue(e.target.value));
+    const normalized = normalizedValue(e.target.value);
+    setVal(normalized);
+    if (/^(\d{2}\/{1}\d{2}\/{1}\d{4})$/.test(normalized))
+      updateForm({
+        date: new Date(`
+      ${normalized.split("/")[1]}/
+      ${normalized.split("/")[0]}/
+      ${normalized.split("/")[2]}
+      `)
+          .toISOString()
+          .split("T")[0],
+      });
   };
 
   return (
     <Input
+      type="text"
       placeholder="24/04/1945"
       value={val}
       onChange={handleChange}
       required
       label="Fecha de nacimiento"
-      pattern="^(\d{2}\/{1}\d{2}\/\d{4})$"
+      pattern="^(\d{2}\/{1}\d{2}\/{1}\d{4})$"
     />
   );
+};
+
+type FileType = {
+  dniFront: string;
+  dniBack: string;
 };
 
 interface FileInputProps {
@@ -90,6 +137,7 @@ interface FileInputProps {
   subtitle?: string;
   buttonLabel: string;
   inputName: string;
+  updateForm: (fields: Partial<FileType>) => void;
 }
 
 export const FileInput = ({
@@ -97,6 +145,7 @@ export const FileInput = ({
   subtitle,
   buttonLabel,
   inputName,
+  updateForm,
 }: FileInputProps) => {
   const [image, setImage] = useState<string | null>(null);
   const [fileName, setFileName] = useState("No hay archivos agregados");
@@ -117,6 +166,7 @@ export const FileInput = ({
     files?.[0] && setFileName(files[0].name);
     if (files) {
       setImage(URL.createObjectURL(files[0]));
+      updateForm({ [inputName]: files[0] });
     }
   };
 
@@ -157,13 +207,13 @@ export const FileInput = ({
                   <div>
                     <Button
                       onClick={() => setConfirmDelete(false)}
-                      link
+                      linkVariant
                       style={{ color: "#fff" }}
                       label="Cancelar"
                     />
                     <Button
                       onClick={handleDelete}
-                      link
+                      linkVariant
                       style={{ color: "#FF3636" }}
                       label="Borrar"
                     />
