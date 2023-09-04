@@ -1,8 +1,5 @@
 import { PiWarningCircleFill } from "react-icons/pi";
-
-interface ErrorAlertProps {
-  message: string;
-}
+import { ErrorAlertProps } from "../../types";
 
 export const ErrorAlert = ({ message }: ErrorAlertProps) => {
   return (

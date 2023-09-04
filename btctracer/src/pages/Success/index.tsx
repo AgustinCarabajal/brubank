@@ -1,7 +1,6 @@
-import { Button, FormTitle } from "../../components";
-import SuccessIcon from "../../assets/success.svg";
-import { FormWrapper } from "../../components/FormWrapper";
 import { useNavigate } from "react-router";
+import { Button, FormTitle, FormWrapper } from "../../components";
+import SuccessIcon from "../../assets/success.svg";
 
 export const Success = () => {
   const navigate = useNavigate();

@@ -1,15 +1,7 @@
-import { useState } from "react";
-import { FormTitle, PasswordInput } from "..";
-import KeyIcon from "../../assets/key.svg";
-
-type PasswordType = {
-  password: string;
-  confirm: string;
-};
-
-type PasswordFormProps = PasswordType & {
-  updateForm: (fields: Partial<PasswordType>) => void;
-};
+import KeyIcon from "../../../assets/key.svg";
+import { PasswordFormProps } from "../../../types";
+import { FormTitle } from "..";
+import { PasswordInput } from "../..";
 
 export const PasswordForm = ({
   password,
@@ -26,6 +18,7 @@ export const PasswordForm = ({
         label="Elegí tu clave"
         value={password}
         onChange={(e) => updateForm({ password: e.target.value })}
+        data-testid="password-input"
       />
       <PasswordInput
         placeholder="*************"
@@ -33,6 +26,7 @@ export const PasswordForm = ({
         label="Confirmá tu clave"
         value={confirm}
         onChange={(e) => updateForm({ confirm: e.target.value })}
+        data-testid="confirm-input"
       />
     </div>
   );

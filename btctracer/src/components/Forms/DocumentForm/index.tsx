@@ -1,14 +1,7 @@
-import { FileInput, FormTitle } from "..";
-import CameraIcon from "../../assets/camera.svg";
-
-type DocumentType = {
-  dniFront: string;
-  dniBack: string;
-};
-
-type DocumentFormProps = DocumentType & {
-  updateForm: (fields: Partial<DocumentType>) => void;
-};
+import { FormTitle } from "..";
+import { FileInput } from "../..";
+import { DocumentFormProps } from "../../../types";
+import CameraIcon from "../../../assets/camera.svg";
 
 export const DocumentForm = ({ updateForm }: DocumentFormProps) => {
   return (

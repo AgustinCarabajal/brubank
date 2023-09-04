@@ -1,19 +1,7 @@
-import { DocumentInput, DateInput, FormTitle, Input } from "..";
-import UserIcon from "../../assets/user.svg";
-import { documentType } from "../../pages";
-
-type UserType = {
-  dniType: documentType;
-  dni: string;
-  email: string;
-  name: string;
-  lastName: string;
-  date: string;
-};
-
-type UserFormProps = UserType & {
-  updateForm: (fields: Partial<UserType>) => void;
-};
+import { FormTitle } from "..";
+import { DateInput, DocumentInput, Input } from "../..";
+import { UserFormProps } from "../../../types";
+import UserIcon from "../../../assets/user.svg";
 
 export const UserForm = ({
   dniType,
@@ -35,6 +23,7 @@ export const UserForm = ({
         label="Correo electrónico"
         value={email}
         onChange={(e) => updateForm({ email: e.target.value })}
+        data-testid="email-input"
       />
       <Input
         type="text"
@@ -43,6 +32,7 @@ export const UserForm = ({
         required
         label="Nombre"
         onChange={(e) => updateForm({ name: e.target.value })}
+        data-testid="name-input"
       />
       <Input
         type="text"
@@ -51,6 +41,7 @@ export const UserForm = ({
         required
         label="Apellido"
         onChange={(e) => updateForm({ lastName: e.target.value })}
+        data-testid="lastname-input"
       />
       <DateInput date={date} updateForm={updateForm} />
     </div>

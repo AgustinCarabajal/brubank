@@ -1,23 +1,10 @@
-import { documentType } from "../pages";
+import { RequestData } from "../types";
 import { endpoints } from "./constants";
 
 export const getPrices = () =>
-  fetch(import.meta.env.VITE_BASE_URL + endpoints.prices).then((res) =>
-    res.json()
-  );
+  fetch(process.env.VITE_BASE_URL + endpoints.prices).then((res) => res.json());
 
-interface RequestData {
-  dniType: documentType;
-  dni: string;
-  name: string;
-  lastName: string;
-  date: string;
-  dniFront: string;
-  dniBack: string;
-  password: string;
-}
-
-export const signup = ({
+export const signup = async ({
   dniType,
   dni,
   name,
@@ -37,7 +24,7 @@ export const signup = ({
   data.append("dni", dni);
   data.append("dni_type", dniType);
 
-  return fetch(import.meta.env.VITE_BASE_URL + endpoints.signup, {
+  return fetch(process.env.VITE_BASE_URL + endpoints.signup, {
     method: "post",
     body: data,
   })

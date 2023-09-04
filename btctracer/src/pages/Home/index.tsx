@@ -1,38 +1,9 @@
 import { useQuery } from "react-query";
 import { getPrices } from "../../api";
-import BTCIcon from "../../assets/btc.svg";
-import ETHIcon from "../../assets/eth.svg";
-import { Button } from "../../components";
+import { Button, CoinCard, Logo } from "../../components";
 import { useNavigate } from "react-router";
 import { BarLoader } from "react-spinners";
-
-export const Logo = () => (
-  <div className="logo">
-    Bitcoin<span className="logo-color">Tracer</span>
-  </div>
-);
-
-interface CoinType {
-  [name: string]: number;
-}
-
-interface CoinCardProps {
-  icon: string;
-  value: number;
-  name: string;
-}
-
-export const CoinCard = ({ icon, value, name }: CoinCardProps) => {
-  return (
-    <div className="coinWrapper">
-      <div className="icon">
-        <img src={icon} alt="coin-icon" />
-      </div>
-      <div className="value">USD {value.toFixed(2)}</div>
-      <div className="name">Precio {name}</div>
-    </div>
-  );
-};
+import { CoinType } from "../../types";
 
 export const Home = () => {
   const navigate = useNavigate();
@@ -42,41 +13,17 @@ export const Home = () => {
     queryFn: getPrices,
   });
 
+  const handleSignup = () => navigate("/signup", { replace: true });
+
   return isLoading ? (
     <BarLoader color="#614ad9" />
   ) : (
     <div className="container">
       <Logo />
-      {data.map((coin: CoinType) => {
-        switch (Object.keys(coin)[0]) {
-          case "ETH": {
-            return (
-              <CoinCard
-                key="ETH"
-                name="ETH"
-                icon={ETHIcon}
-                value={coin["ETH"]}
-              />
-            );
-          }
-          case "BTC": {
-            return (
-              <CoinCard
-                key="BTC"
-                name="BTC"
-                icon={BTCIcon}
-                value={coin["BTC"]}
-              />
-            );
-          }
-          default:
-            return <></>;
-        }
-      })}
-      <Button
-        label="Hacerme una cuenta"
-        onClick={() => navigate("/signup", { replace: true })}
-      />
+      {data.map((coin: CoinType, index: number) => (
+        <CoinCard key={index} coin={coin} />
+      ))}
+      <Button label="Hacerme una cuenta" onClick={handleSignup} />
     </div>
   );
 };

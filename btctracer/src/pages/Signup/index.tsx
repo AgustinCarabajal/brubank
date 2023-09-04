@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useMutation } from "react-query";
 import { useNavigate } from "react-router";
 import {
   Button,
@@ -5,42 +7,13 @@ import {
   DocumentForm,
   PasswordForm,
   ErrorAlert,
+  FormWrapper,
 } from "../../components";
-import { FormWrapper } from "../../components/FormWrapper";
 import { useRegisterForm } from "../../hooks/useRegisterForm";
-import { useState } from "react";
-import { useMutation } from "react-query";
 import { signup } from "../../api";
-
-export enum documentType {
-  DNI = "dni",
-}
-
-export type FormData = {
-  dniType: documentType;
-  dni: string;
-  email: string;
-  name: string;
-  lastName: string;
-  date: string;
-  dniFront: string;
-  dniBack: string;
-  password: string;
-  confirm: string;
-};
-
-const INITIAL_DATA = {
-  dniType: documentType.DNI,
-  dni: "",
-  email: "",
-  name: "",
-  lastName: "",
-  date: "",
-  dniFront: "",
-  dniBack: "",
-  password: "",
-  confirm: "",
-};
+import { FormData } from "../../types";
+import { INITIAL_DATA, isValidDate, validatePassword } from "../../utils";
+import { BarLoader } from "react-spinners";
 
 export const Signup = () => {
   const [data, setData] = useState(INITIAL_DATA);
@@ -68,18 +41,7 @@ export const Signup = () => {
   });
 
   const submitForm = () => {
-    if (data.password.length < 8)
-      return setError("Ingresar al menos 8 caracteres");
-    if (!/[A-Z]/.test(data.password))
-      return setError("Ingresar al menos 1 mayuscula");
-    if (!/[a-z]/.test(data.password))
-      return setError("Ingresar al menos 1 minuscula");
-    if (!/[0-9]/.test(data.password))
-      return setError("Ingresar al menos 1 numero");
-    if (data.password !== data.confirm)
-      return setError("Las claves no coinciden");
-
-    setError("");
+    if (!validatePassword(data.password, data.confirm, setError)) return;
     mutate(data);
   };
 
@@ -94,9 +56,13 @@ export const Signup = () => {
       <FormWrapper>
         <form onSubmit={handleSubmit}>
           {step}
-          <div>
+          {isLoading ? (
+            <div className="submitLoader">
+              <BarLoader color="#614ad9" />
+            </div>
+          ) : (
             <Button disabled={isLoading} type="submit" label="Siguiente" />
-          </div>
+          )}
         </form>
       </FormWrapper>
     </>
