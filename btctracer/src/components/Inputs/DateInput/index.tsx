@@ -10,6 +10,7 @@ export const DateInput = ({ date, updateForm }: DateInputProps) => {
 
   return (
     <Input
+      className="dateInput"
       type="date"
       value={date}
       onChange={handleChange}
