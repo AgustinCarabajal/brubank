@@ -2,6 +2,12 @@ import { useState } from "react";
 import { DocumentInputProps } from "../../../types";
 import { Input } from "..";
 
+/**
+ * The `DocumentInput` component is a TypeScript React component that renders an input field for a
+ * document number, with a normalized value and an update function.
+ * @param {DocumentInputProps}  - - `dni`: The initial value for the document input field.
+ * @returns The `DocumentInput` component is being returned.
+ */
 export const DocumentInput = ({
   dni,
   dniType,

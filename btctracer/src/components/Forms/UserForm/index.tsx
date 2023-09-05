@@ -3,6 +3,13 @@ import { DateInput, DocumentInput, Input } from "../..";
 import { UserFormProps } from "../../../types";
 import UserIcon from "../../../assets/user.svg";
 
+/**
+ * The UserForm component is a form that allows users to input their personal information such as DNI,
+ * email, name, last name, and date of birth.
+ * @param {UserFormProps}  - - `dniType`: The type of document identification (e.g., "DNI",
+ * "Passport").
+ * @returns The UserForm component is being returned.
+ */
 export const UserForm = ({
   dniType,
   dni,

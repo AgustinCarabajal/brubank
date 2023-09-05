@@ -15,6 +15,9 @@ import { FormData } from "../../types";
 import { INITIAL_DATA, validatePassword } from "../../utils";
 import { BarLoader } from "react-spinners";
 
+/* The `Signup` component is a functional component that handles the signup process. It uses various
+hooks and components from the React and React Query libraries to manage form data, handle form
+submission, and display error messages. */
 export const Signup = () => {
   const [data, setData] = useState(INITIAL_DATA);
   const navigate = useNavigate();

@@ -10,6 +10,7 @@ BitcoinTracer es una aplicación de criptomonedas con un onboarding integrado pa
 - Para los test utilice `jest` y react `testing-library`
 - Para el caso de los formularios se podrían implementar soluciones similares con `react-hook-form` o utilizar un framework como `remix` para que la aplicación sea mas escalable.
 - En el caso de los estilos decidí utilizar `css` ya que me pareció que el diseño era simple, pero se podría configurar un framework como `Tailwind` para una aplicación compleja y que requiera una solución escalable.
+- Por último utilice la herramienta Mintlify para la documentación de funciones y componentes.
 
 ## Instalación
 

@@ -37,6 +37,9 @@ beforeEach(() => {
   file = new File(["(⌐□_□)"], "dni.png", { type: "image/png" });
 });
 
+/* The code is defining a test suite using the `describe` function. The test suite is named
+"BitcoinTracer test suite". Inside the test suite, there are two test cases defined using the `it`
+function. */
 describe("BitcoinTracer test suite", () => {
   it("Should Navigate through Signup Component", async () => {
     render(

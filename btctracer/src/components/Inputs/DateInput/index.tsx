@@ -1,6 +1,12 @@
 import { DateInputProps } from "../../../types";
 import { Input } from "..";
 
+/**
+ * The DateInput component is a TypeScript React component that renders an input field for selecting a
+ * date and updates the form with the selected date.
+ * @param {DateInputProps}  - - `date`: The current value of the date input field.
+ * @returns The DateInput component is being returned.
+ */
 export const DateInput = ({ date, updateForm }: DateInputProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     updateForm({

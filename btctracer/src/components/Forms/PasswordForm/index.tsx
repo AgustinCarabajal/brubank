@@ -3,6 +3,11 @@ import { PasswordFormProps } from "../../../types";
 import { FormTitle } from "..";
 import { PasswordInput } from "../..";
 
+/**
+ * The `PasswordForm` component is a form that allows users to enter and confirm their password.
+ * @param {PasswordFormProps}  - - `password`: The current value of the password input field.
+ * @returns The PasswordForm component is being returned.
+ */
 export const PasswordForm = ({
   password,
   confirm,
