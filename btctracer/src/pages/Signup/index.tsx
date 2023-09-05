@@ -58,6 +58,11 @@ export const Signup = () => {
         setError("Ingrese una fecha válida");
         return;
       }
+      case "file": {
+        e.preventDefault();
+        setError("Ingrese una imagen válida");
+        return;
+      }
 
       default:
         return;
