@@ -10,16 +10,16 @@ BitcoinTracer es una aplicación de criptomonedas con un onboarding integrado.
 - Para el caso de los formularios se podrían implementar soluciones similares con, por ejemplo, `react-hook-form` o utilizar un framework como remix para que la aplicación sea mas escalable.
 - En el caso de los estilos decidí utilizar `css` ya que me pareció que el diseño era simple, pero se podría configurar un framework como `Tailwind` para una aplicación compleja y que requiera una solución escalable.
 
-## Installation
+## Instalación
 
-Use the node package manager [(npm)](https://www.npmjs.com) to install the app.
+Utilizar el administrador de paquetes de node [(npm)](https://www.npmjs.com) para instalar la app.
 
 ```bash
 git clone https://github.com/AgustinCarabajal/brubank.git && cd btctracer
 npm install
 ```
 
-### Run the app!
+### Levanta la app!
 
 ```bash
 npm run dev
