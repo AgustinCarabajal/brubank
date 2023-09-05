@@ -56,11 +56,6 @@ export const Signup = () => {
 
   const handleValidation = (e: React.FormEvent<HTMLFormElement>) => {
     switch ((e.target as HTMLInputElement).type) {
-      case "date": {
-        e.preventDefault();
-        setError("Ingrese una fecha válida");
-        return;
-      }
       case "file": {
         e.preventDefault();
         setError("Ingrese una imagen válida");
