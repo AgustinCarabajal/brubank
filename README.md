@@ -1,6 +1,6 @@
 # Brubank
 
-BitcoinTracer es una aplicación de criptomonedas con un onboarding integrado.
+BitcoinTracer es una aplicación de criptomonedas con un onboarding integrado para el registro de nuevos usuarios!
 
 ### Desarrollo
 
